@@ -2,8 +2,13 @@
 
 <main>
     <ul id="user">
-        <li>
-            <app-user></app-user>
-        </li>
+      <li *ngFor="let usuario of usuarios">
+        <app-user
+          [user]="usuario" 
+          (selecionado)="onSelectUser(usuario.id)"
+        ></app-user>
+      </li>
     </ul>
-</main>
+  
+    <app-tarefa [name]="pegarUsuario.name"></app-tarefa>
+  </main>
