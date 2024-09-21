@@ -1,7 +1,5 @@
-
-      <div class="example-button-container">
-        <button mat-fab aria-label="Example icon button with a delete icon">
-          <mat-icon>{{tipo}}</mat-icon>
-        </button>
-      </div>
-  
+<div class="example-button-container">
+  <button mat-fab aria-label="Botão de ação" (click)="executarAcao()">
+    <mat-icon>{{ getIcone() }}</mat-icon> <!-- Exibe o ícone correto -->
+  </button>
+</div>

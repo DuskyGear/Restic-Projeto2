@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task } from './tarefa.model';
 import { BotaoComponent } from '../../botao/botao.component';
 
@@ -12,5 +12,13 @@ import { BotaoComponent } from '../../botao/botao.component';
 })
 export class TarefaComponent {
   @Input({required:true}) task!:Task;
+
+  @Output() completo = new EventEmitter<string>()
+
+  ConcluirTarefa(){
+    this.completo.emit(this.task.id)
+  }
+
+
 
 }

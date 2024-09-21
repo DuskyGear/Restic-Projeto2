@@ -45,4 +45,9 @@ get SelecionarTarefasUsuario(){
   return this.tasks.filter((tarefa) => tarefa.userId=== this.IdUsuario);
 }
 
+onCompletarTarefa(id:string)
+{
+  this.tasks = this.tasks.filter((tarefa) => tarefa.id !== id); // Remove a tarefa
+}
+
 }
