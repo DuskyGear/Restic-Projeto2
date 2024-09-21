@@ -2,13 +2,23 @@
 
 <main>
     <ul id="user">
-      <li *ngFor="let usuario of usuarios">
-        <app-user
-          [user]="usuario" 
-          (selecionado)="onSelectUser(usuario.id)"
-        ></app-user>
-      </li>
+      @for (usuario of usuarios; track usuario.id) {
+        <li >
+          <app-user
+            [user]="usuario" 
+            (selecionado)="onSelectUser(usuario.id)"
+          ></app-user>
+        </li>
+      }
+      
     </ul>
-  
-    <app-tarefa [name]="pegarUsuario.name"></app-tarefa>
+    @if (pegarUsuario) {
+      <app-tarefas [IdUsuario]="pegarUsuario.id" [name]="pegarUsuario.name"></app-tarefas>
+    }
+    @else {
+      <p id="fallback">
+        Selecione um Usuario para ver a tarefa
+      </p>
+    }
+    
   </main>

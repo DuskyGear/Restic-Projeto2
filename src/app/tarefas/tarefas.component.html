@@ -1,0 +1,20 @@
+<section id="tasks">
+    <header>
+        <h1>Tarefas do(a) {{name}}</h1>
+        <menu>
+            <app-botao></app-botao>  
+        </menu>
+    </header>
+
+    <ul>
+        @for (tarefa of SelecionarTarefasUsuario ; track tarefa.id) 
+        {
+            <li>
+                <app-tarefa [task]="tarefa"></app-tarefa>
+            </li>
+        }
+    </ul>
+
+</section>
+
+
