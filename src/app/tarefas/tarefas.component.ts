@@ -56,4 +56,8 @@ onCompletarTarefa(id:string)
  {
   this.adicionandoTarefa=true;
  }
+ onCancelarAdicionarTarefa()
+ {
+  this.adicionandoTarefa=false;
+ }
 }

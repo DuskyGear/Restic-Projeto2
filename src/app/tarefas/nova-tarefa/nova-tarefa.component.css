@@ -5,7 +5,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: 10; /* Isso mantém o backdrop sobre os outros elementos */
+    z-index: 2; /* Isso mantém o backdrop sobre os outros elementos */
   }
   
   dialog {
@@ -18,7 +18,7 @@
     overflow: hidden;
     padding: 1rem;
     top: 5rem;
-    z-index: 11;
+    z-index: 3;
   }
   
   h2 {
