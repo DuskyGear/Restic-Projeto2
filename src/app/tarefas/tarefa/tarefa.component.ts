@@ -1,17 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { Task } from './tarefa.model';
+import { BotaoComponent } from '../../botao/botao.component';
 
-interface Task {
-    id:string,
-    userId:string,
-    titulo:string,
-    sumario:string,
-    dataTarefa: string
-}
 
 @Component({
   selector: 'app-tarefa',
   standalone: true,
-  imports: [],
+  imports: [BotaoComponent],
   templateUrl: './tarefa.component.html',
   styleUrl: './tarefa.component.css'
 })

@@ -5,7 +5,8 @@
       @for (usuario of usuarios; track usuario.id) {
         <li >
           <app-user
-            [user]="usuario" 
+            [user]="usuario"
+            [ativo]="usuario.id === selecionarPorid " 
             (selecionado)="onSelectUser(usuario.id)"
           ></app-user>
         </li>
