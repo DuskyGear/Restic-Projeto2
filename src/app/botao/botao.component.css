@@ -3,4 +3,5 @@
   display: flex;
   justify-content: center;
   width: 60px;
+  z-index: 0; /* Isso garante que o botão fique sob o backdrop */
 }

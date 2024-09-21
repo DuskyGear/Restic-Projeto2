@@ -1,8 +1,15 @@
+@if(adicionandoTarefa)
+{
+    <app-nova-tarefa></app-nova-tarefa>
+}
+
+
+
 <section id="tasks">
     <header>
         <h1>Tarefas do(a) {{name}}</h1>
         <menu>
-            <app-botao tipo="add" ></app-botao>
+            <app-botao tipo="add" (acao)="onComecarAdicionarTarefa()" ></app-botao>
         </menu>
     </header>
 

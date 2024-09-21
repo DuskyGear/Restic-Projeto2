@@ -1,11 +1,12 @@
 import { Component, Input, } from '@angular/core';
 import {BotaoComponent} from '../botao/botao.component'
 import { TarefaComponent } from "./tarefa/tarefa.component";
+import {NovaTarefaComponent} from './nova-tarefa/nova-tarefa.component'
 
 @Component({
   selector: 'app-tarefas',
   standalone: true,
-  imports: [BotaoComponent, TarefaComponent],
+  imports: [BotaoComponent, TarefaComponent,NovaTarefaComponent],
   templateUrl: './tarefas.component.html',
   styleUrl: './tarefas.component.css'
 })
@@ -13,6 +14,8 @@ export class TarefasComponent {
 
 @Input({required:true}) name !: string;
 @Input({required:true}) IdUsuario !: string;
+
+adicionandoTarefa:boolean=false;
 
 tasks = [
   {
@@ -49,5 +52,8 @@ onCompletarTarefa(id:string)
 {
   this.tasks = this.tasks.filter((tarefa) => tarefa.id !== id); // Remove a tarefa
 }
-
+ onComecarAdicionarTarefa()
+ {
+  this.adicionandoTarefa=true;
+ }
 }
