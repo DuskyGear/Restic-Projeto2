@@ -20,7 +20,7 @@ Inicie o backend:
 
 ## Abra um terminal e execute o seguinte comando para iniciar o JSON Server:
 
-    '''bash
+    '''
 
     json-server --watch usuarios-db.json --port 4000
 
@@ -28,7 +28,7 @@ Inicie o backend:
 
 Em um novo terminal, navegue até a pasta do projeto e execute:
 
-    '''bash
+    '''
 
     npm install
 
@@ -37,7 +37,7 @@ Em um novo terminal, navegue até a pasta do projeto e execute:
 
 Após instalar as dependências, execute:
 
-    '''bash
+    '''
     npm start
 
 
