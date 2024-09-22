@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* Você pode adicionar estilos globais a este arquivo e também importar outros arquivos de estilo */
 * {
   box-sizing: border-box;
 }
@@ -9,13 +9,26 @@ html {
 
 body {
   font-family: "Poppins", sans-serif;
-  background: radial-gradient(circle at top left, #0e0a13, #3d3b42);
+  background: radial-gradient(circle at top left, #0e0a13, #0e0a13);
+  background-size: cover; /* Garante que o background cubra toda a área */
   color: #c3b3d8;
   margin: 0;
   padding: 0;
   height: 100%;
-
+  font-size: 16px; /* Tamanho padrão da fonte */
 }
 
-html, body { height: 100%; }
-body { margin: 0;}
+
+/* Estilos responsivos para telas menores */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px; /* Diminui o tamanho da fonte para telas menores */
+    background-position: center; /* Centraliza o background para melhor ajuste */
+  }
+
+  /* Ajuste de margens e paddings em elementos de texto */
+  h1, h2, h3, p {
+    margin: 0; /* Remove margens para melhor ajuste */
+    padding: 5px; /* Adiciona padding para espaçamento em dispositivos móveis */
+  }
+}
