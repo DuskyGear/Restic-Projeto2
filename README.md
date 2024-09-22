@@ -3,7 +3,8 @@
 ## Descrição
 
 Este projeto consiste em um gerenciador de tarefas por usuário, onde cada usuário pode vincular suas tarefas e ter a opção de concluir ou adicionar novas. As tarefas permanecem acessíveis mesmo após recarregar a página.
-
+## Melhorias
+Ainda há várias melhorias que quero implementar no meu projeto. Uma delas é transformar todos os botões em componentes do Angular Material, já que o prazo foi um pouco curto e não consegui explorar essa funcionalidade ao máximo. Além disso, uma melhoria urgente que desejo fazer é implementar um gerenciamento de perfis, que permitirá editar tarefas e modificar os dados relacionados a elas.
 ## Tecnologias Utilizadas
 
 - **Angular 17**
@@ -20,7 +21,7 @@ Inicie o backend:
 
 ## Abra um terminal e execute o seguinte comando para iniciar o JSON Server:
 
-    '''
+    
 
     json-server --watch usuarios-db.json --port 4000
 
@@ -28,7 +29,7 @@ Inicie o backend:
 
 Em um novo terminal, navegue até a pasta do projeto e execute:
 
-    '''
+    
 
     npm install
 
@@ -37,7 +38,7 @@ Em um novo terminal, navegue até a pasta do projeto e execute:
 
 Após instalar as dependências, execute:
 
-    '''
+    
     npm start
 
 
