@@ -27,7 +27,7 @@ export class BotaoComponent {
         case 'add':
           return 'add'; // Ícone de adicionar
         case 'check':
-          return 'check'; // Ícone de deletar
+          return 'check'; // Ícone de completar
         default:
           return 'help_outline'; // Ícone padrão
       }

@@ -14,36 +14,36 @@ import { NgFor, NgIf } from '@angular/common';
 })
 export class AppComponent implements OnInit, OnDestroy {
   
-  url = 'http://localhost:4000/usuarios';
-  usuarios: any[] = [];
-  selecionarPorid?: string;
-  private intervalId: any;
+  url = 'http://localhost:4000/usuarios'; // URL da API
+  usuarios: any[] = []; // Array para armazenar usuários
+  selecionarPorid?: string; // ID do usuário selecionado
+  private intervalId: any; // ID do intervalo para monitoramento
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.fetchUsuarios();
-    this.startMonitoring();
+    this.fetchUsuarios(); // Busca usuários ao iniciar
+    this.startMonitoring(); // Inicia o monitoramento da API
   }
 
   startMonitoring() {
     this.intervalId = setInterval(() => {
-      this.fetchUsuarios();
-    }, 2000); // Monitora a API a cada 2 segundos
+      this.fetchUsuarios(); // Atualiza a lista de usuários a cada 2 segundos
+    }, 2000);
   }
 
   fetchUsuarios() {
     this.http.get<any[]>(this.url).subscribe(data => {
-      this.usuarios = data;
+      this.usuarios = data; // Atualiza o array com dados da API
     });
   }
 
   get pegarUsuario() {
-    return this.usuarios.find(usuario => usuario.id === this.selecionarPorid)!;
+    return this.usuarios.find(usuario => usuario.id === this.selecionarPorid)!; // Retorna o usuário selecionado
   }
 
   onSelectUser(id: string) {
-    this.selecionarPorid = id;
+    this.selecionarPorid = id; // Define o usuário selecionado pelo ID
   }
 
   ngOnDestroy() {

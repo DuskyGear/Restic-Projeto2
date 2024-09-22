@@ -13,22 +13,22 @@ import { DadosNovaTarefa } from '../tarefas/nova-tarefa/nova-tarefa.model';
   styleUrls: ['./tarefas.component.css']
 })
 export class TarefasComponent implements OnInit, OnDestroy {
-  url = 'http://localhost:4000/tarefas';
-  private intervalId: any;
+  url = 'http://localhost:4000/tarefas'; // URL da API de tarefas
+  private intervalId: any; // ID do intervalo para atualizações
 
-  @Input({ required: true }) name!: string;
-  @Input({ required: true }) IdUsuario!: string;
+  @Input({ required: true }) name!: string; // Nome do usuário
+  @Input({ required: true }) IdUsuario!: string; // ID do usuário
 
-  adicionandoTarefa: boolean = false;
-  tasks: any[] = [];
+  adicionandoTarefa: boolean = false; // Estado para controle da adição de tarefas
+  tasks: any[] = []; // Array para armazenar tarefas
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.carregarTarefas();
+    this.carregarTarefas(); // Carrega tarefas ao iniciar
     this.intervalId = setInterval(() => {
-      this.carregarTarefas();
-    }, 2000); // 2 minutos
+      this.carregarTarefas(); // Atualiza tarefas a cada 2 segundos
+    }, 2000);
   }
 
   ngOnDestroy() {
@@ -40,55 +40,53 @@ export class TarefasComponent implements OnInit, OnDestroy {
   carregarTarefas() {
     this.http.get<any[]>(this.url).subscribe(
       (data) => {
-        this.tasks = data;
+        this.tasks = data; // Atualiza o array com dados da API
       },
       (error) => {
-        console.error('Erro ao carregar tarefas:', error);
+        console.error('Erro ao carregar tarefas:', error); // Loga erro caso ocorra
       }
     );
   }
 
   get SelecionarTarefasUsuario() {
-    return this.tasks.filter((tarefa) => tarefa.userId === this.IdUsuario);
+    return this.tasks.filter((tarefa) => tarefa.userId === this.IdUsuario); // Filtra tarefas do usuário
   }
 
   onCompletarTarefa(id: string) {
     this.http.delete(`${this.url}/${id}`).subscribe(
       () => {
-        this.carregarTarefas(); // Recarrega a lista de tarefas do servidor
+        this.carregarTarefas(); // Recarrega a lista de tarefas após completar
       },
       (error) => {
-        console.error('Erro ao completar tarefa:', error);
+        console.error('Erro ao completar tarefa:', error); // Loga erro caso ocorra
       }
     );
   }
   
-
   onComecarAdicionarTarefa() {
-    this.adicionandoTarefa = true;
+    this.adicionandoTarefa = true; // Inicia o processo de adição de tarefa
   }
 
   onCancelarAdicionarTarefa() {
-    this.adicionandoTarefa = false;
+    this.adicionandoTarefa = false; // Cancela o processo de adição de tarefa
   }
 
   onAdicionarTarefa(DadosTarefa: DadosNovaTarefa) {
     const novaTarefa = {
-      userId: this.IdUsuario,
-      titulo: DadosTarefa.titulo,
-      sumario: DadosTarefa.sumario,
-      dataTarefa: DadosTarefa.data
+      userId: this.IdUsuario, // ID do usuário para a nova tarefa
+      titulo: DadosTarefa.titulo, // Título da nova tarefa
+      sumario: DadosTarefa.sumario, // Sumário da nova tarefa
+      dataTarefa: DadosTarefa.data // Data da nova tarefa
     };
   
     this.http.post<any>(this.url, novaTarefa).subscribe(
       (response) => {
-        this.carregarTarefas(); // Recarrega a lista de tarefas do servidor
-        this.adicionandoTarefa = false;
+        this.carregarTarefas(); // Recarrega a lista de tarefas após adicionar
+        this.adicionandoTarefa = false; // Reseta estado de adição
       },
       (error) => {
-        console.error('Erro ao adicionar tarefa:', error);
+        console.error('Erro ao adicionar tarefa:', error); // Loga erro caso ocorra
       }
     );
   }
-  
 }

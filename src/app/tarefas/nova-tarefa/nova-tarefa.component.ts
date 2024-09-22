@@ -10,24 +10,22 @@ import { DadosNovaTarefa } from './nova-tarefa.model';
   styleUrl: './nova-tarefa.component.css'
 })
 export class NovaTarefaComponent {
-  @Output() cancelar = new EventEmitter<void>();
-  @Output() add = new EventEmitter<DadosNovaTarefa>();
-  entradaTitulo='';
-  entradaSumario='';
-  entradaData='';
+  @Output() cancelar = new EventEmitter<void>(); // Emite evento para cancelar a adição de tarefa
+  @Output() add = new EventEmitter<DadosNovaTarefa>(); // Emite os dados da nova tarefa a serem adicionados
 
-  onCancelarTarefa()
-  {
-    this.cancelar.emit()
+  entradaTitulo = ''; // Armazena o título da nova tarefa
+  entradaSumario = ''; // Armazena o sumário da nova tarefa
+  entradaData = ''; // Armazena a data da nova tarefa
+
+  onCancelarTarefa() {
+    this.cancelar.emit(); // Emite evento de cancelamento
   }
-  onEnviando()
-  {
+
+  onEnviando() {
     this.add.emit({
-      titulo:this.entradaTitulo,
-      sumario:this.entradaSumario,
-      data:this.entradaData,
-    })
-    
+      titulo: this.entradaTitulo, // Envia o título da nova tarefa
+      sumario: this.entradaSumario, // Envia o sumário da nova tarefa
+      data: this.entradaData, // Envia a data da nova tarefa
+    });
   }
-
 }
