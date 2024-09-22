@@ -1,20 +1,20 @@
 <div class="backdrop" (click)="onCancelarTarefa()"></div>
 <dialog open>
   <h2>Adicionar Tarefa</h2>
-  <form>
+  <form (ngSubmit)="onEnviando()">
     <p>
       <label for="title">Titulo</label>
-      <input type="text" id="title" name="title" />
+      <input type="text" id="title" name="titulo" [(ngModel)]="entradaTitulo" />
     </p>
 
     <p>
       <label for="summary">Sumario</label>
-      <textarea id="summary" rows="5" name="summary"></textarea>
+      <textarea id="summary" rows="5" name="sumario" [(ngModel)]="entradaSumario"></textarea>
     </p>
 
     <p>
-      <label for="due-date">Data</label>
-      <input type="date" id="due-date" name="due-date" />
+      <label for="due-date" >Data</label>
+      <input [(ngModel)]="entradaData" type="date" id="due-date" name="data" />
     </p>
 
     <p class="actions">

@@ -2,6 +2,7 @@ import { Component, Input, } from '@angular/core';
 import {BotaoComponent} from '../botao/botao.component'
 import { TarefaComponent } from "./tarefa/tarefa.component";
 import {NovaTarefaComponent} from './nova-tarefa/nova-tarefa.component'
+import { DadosNovaTarefa } from '../tarefas/nova-tarefa/nova-tarefa.model';
 
 @Component({
   selector: 'app-tarefas',
@@ -58,6 +59,19 @@ onCompletarTarefa(id:string)
  }
  onCancelarAdicionarTarefa()
  {
+  this.adicionandoTarefa=false;
+ }
+ onAdicionarTarefa(DadosTarefa:DadosNovaTarefa)
+ {
+  this.tasks.unshift(
+    {
+      id:new Date().getTime().toString(),
+      userId: this.IdUsuario,
+      titulo: DadosTarefa.titulo,
+      sumario: DadosTarefa.sumario,
+      dataTarefa: DadosTarefa.data
+    }
+  );
   this.adicionandoTarefa=false;
  }
 }

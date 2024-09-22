@@ -1,6 +1,6 @@
 @if(adicionandoTarefa)
 {
-    <app-nova-tarefa (cancelar)="onCancelarAdicionarTarefa()"></app-nova-tarefa>
+    <app-nova-tarefa (cancelar)="onCancelarAdicionarTarefa()" (add)="onAdicionarTarefa($event)"></app-nova-tarefa>
 }
 
 
