@@ -1,77 +1,94 @@
-import { Component, Input, } from '@angular/core';
-import {BotaoComponent} from '../botao/botao.component'
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BotaoComponent } from '../botao/botao.component';
 import { TarefaComponent } from "./tarefa/tarefa.component";
-import {NovaTarefaComponent} from './nova-tarefa/nova-tarefa.component'
+import { NovaTarefaComponent } from './nova-tarefa/nova-tarefa.component';
 import { DadosNovaTarefa } from '../tarefas/nova-tarefa/nova-tarefa.model';
 
 @Component({
   selector: 'app-tarefas',
   standalone: true,
-  imports: [BotaoComponent, TarefaComponent,NovaTarefaComponent],
+  imports: [BotaoComponent, TarefaComponent, NovaTarefaComponent],
   templateUrl: './tarefas.component.html',
-  styleUrl: './tarefas.component.css'
+  styleUrls: ['./tarefas.component.css']
 })
-export class TarefasComponent {
+export class TarefasComponent implements OnInit, OnDestroy {
+  url = 'http://localhost:4000/tarefas';
+  private intervalId: any;
 
-@Input({required:true}) name !: string;
-@Input({required:true}) IdUsuario !: string;
+  @Input({ required: true }) name!: string;
+  @Input({ required: true }) IdUsuario!: string;
 
-adicionandoTarefa:boolean=false;
+  adicionandoTarefa: boolean = false;
+  tasks: any[] = [];
 
-tasks = [
-  {
-    id:'t1',
-    userId:'u1',
-    titulo:'Primeria Tarefa',
-    sumario:'Aprendendo mais com Angular',
-    dataTarefa: '2025-01-10'
+  constructor(private http: HttpClient) {}
 
-  },
-  {
-    id:'t2',
-    userId:'u2',
-    titulo:'Segunda Tarefa',
-    sumario:'Aprendendo mais com Angular Material',
-    dataTarefa: '2025-01-10'
-
-  },
-  {
-    id:'t3',
-    userId:'u3',
-    titulo:'Primeria Tarefa',
-    sumario:'Aprendendo mais com Angular Signal',
-    dataTarefa: '2025-01-10'
+  ngOnInit() {
+    this.carregarTarefas();
+    this.intervalId = setInterval(() => {
+      this.carregarTarefas();
+    }, 2000); // 2 minutos
   }
 
-];
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId); // Limpa o intervalo ao destruir o componente
+    }
+  }
 
-get SelecionarTarefasUsuario(){
-  return this.tasks.filter((tarefa) => tarefa.userId=== this.IdUsuario);
-}
+  carregarTarefas() {
+    this.http.get<any[]>(this.url).subscribe(
+      (data) => {
+        this.tasks = data;
+      },
+      (error) => {
+        console.error('Erro ao carregar tarefas:', error);
+      }
+    );
+  }
 
-onCompletarTarefa(id:string)
-{
-  this.tasks = this.tasks.filter((tarefa) => tarefa.id !== id); // Remove a tarefa
-}
- onComecarAdicionarTarefa()
- {
-  this.adicionandoTarefa=true;
- }
- onCancelarAdicionarTarefa()
- {
-  this.adicionandoTarefa=false;
- }
- onAdicionarTarefa(DadosTarefa:DadosNovaTarefa)
- {
-  this.tasks.unshift(
-    {
-      id:new Date().getTime().toString(),
+  get SelecionarTarefasUsuario() {
+    return this.tasks.filter((tarefa) => tarefa.userId === this.IdUsuario);
+  }
+
+  onCompletarTarefa(id: string) {
+    this.http.delete(`${this.url}/${id}`).subscribe(
+      () => {
+        this.carregarTarefas(); // Recarrega a lista de tarefas do servidor
+      },
+      (error) => {
+        console.error('Erro ao completar tarefa:', error);
+      }
+    );
+  }
+  
+
+  onComecarAdicionarTarefa() {
+    this.adicionandoTarefa = true;
+  }
+
+  onCancelarAdicionarTarefa() {
+    this.adicionandoTarefa = false;
+  }
+
+  onAdicionarTarefa(DadosTarefa: DadosNovaTarefa) {
+    const novaTarefa = {
       userId: this.IdUsuario,
       titulo: DadosTarefa.titulo,
       sumario: DadosTarefa.sumario,
       dataTarefa: DadosTarefa.data
-    }
-  );
-  this.adicionandoTarefa=false;
- }
+    };
+  
+    this.http.post<any>(this.url, novaTarefa).subscribe(
+      (response) => {
+        this.carregarTarefas(); // Recarrega a lista de tarefas do servidor
+        this.adicionandoTarefa = false;
+      },
+      (error) => {
+        console.error('Erro ao adicionar tarefa:', error);
+      }
+    );
+  }
+  
 }

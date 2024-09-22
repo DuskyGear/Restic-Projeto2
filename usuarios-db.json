@@ -1,0 +1,57 @@
+{
+  "usuarios": [
+    {
+      "id": "u1",
+      "name": "Solana Ludmila",
+      "avatar": "user-1.jpg"
+    },
+    {
+      "id": "u2",
+      "name": "Luisa Sonza",
+      "avatar": "user-2.jpg"
+    },
+    {
+      "id": "u3",
+      "name": "Herbet Fernandes",
+      "avatar": "user-3.jpg"
+    },
+    {
+      "id": "u4",
+      "name": "Paulo Eduardo",
+      "avatar": "user-3.jpg"
+    },
+    {
+      "id": "u5",
+      "name": "Mariela Silvya",
+      "avatar": "user-5.jpg"
+    },
+    {
+      "id": "u6",
+      "name": "Luis Gustavo",
+      "avatar": "user-6.jpg"
+    }
+  ],
+  "tarefas": [
+    {
+      "id": "t1",
+      "userId": "u1",
+      "titulo": "Primeira Tarefa",
+      "sumario": "Aprendendo mais com Angular",
+      "dataTarefa": "2025-01-10"
+    },
+    {
+      "id": "t2",
+      "userId": "u2",
+      "titulo": "Segunda Tarefa",
+      "sumario": "Aprendendo mais com Angular Material",
+      "dataTarefa": "2025-01-10"
+    },
+    {
+      "id": "t3",
+      "userId": "u3",
+      "titulo": "Terceira Tarefa",
+      "sumario": "Aprendendo mais com Angular Signal",
+      "dataTarefa": "2025-01-10"
+    }
+  ]
+}
